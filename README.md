@@ -11,21 +11,15 @@ DEXON is a comprehensive decentralized exchange platform that combines advanced 
 
 ## 🏛 System Architecture
 
-DEXON implements a hybrid architecture combining web interfaces, AI assistance, and blockchain integration:
+DEXON implements a hybrid architecture combining web interfaces, off-chain service, AI assistance, and blockchain integration:
 
 ### Components Flow
-```mermaid
-graph LR
-    User --> |1a. Place order| WebApp
-    User --> |1b. Place order by bot| AIAssistant
-    AIAssistant --> |1b.1 OpenAI communication| DexonService
-    AIAssistant --> |1b.2 Send order| WebApp
-    WebApp --> |2a. Send limit/stop/twap order| DexonService
-    WebApp --> |2b. Send market order| Blockchain
-    DexonService --> |3. Listen events| AMMContracts
-    DexonService --> |4. Trigger order| DexonContract
-    DexonContract --> |5. Execute| AMMContracts
-```
+![image](./assets/arch.png)
+
+- User can places order through the web interface. The market orders go directly to the smart contract, while limit, stop, and TWAP orders are submitted to the `dexon-service`. 
+- Another path, the AI trading assistant, user provides natural language order placement and price suggestions. The AI assistant validates the order and sends it to the `dexon-service`.
+- The `dexon-service` handles order management and execution, integrating with `dexon-contract` for order matching.
+- Details: Please visit the [documentation](https://hackmd.io/@0xdavid7/rkYQt9Noyx)
 
 ### 🚀 Key Features
 - **Multiple Order Types**
@@ -69,6 +63,7 @@ Smart contracts powering the DEX:
 - Built with Foundry
 
 ### 4. [dexon-price-tools](https://github.com/zuni-lab/dexon-price-tools)
+>> It is not a part of the main components, but it is essential for the DEXON ecosystem.
 Price synchronization tool for Monad testnet:
 - Syncs prices from Ethereum mainnet
 - Supports ETH, BTC, SOL
