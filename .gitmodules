@@ -1,0 +1,9 @@
+[submodule "dexon-contract"]
+	path = dexon-contract
+	url = https://github.com/zuni-lab/dexon-contract.git
+[submodule "dexon-service"]
+	path = dexon-service
+	url = https://github.com/zuni-lab/dexon-service.git
+[submodule "dexon-ui"]
+	path = dexon-ui
+	url = https://github.com/zuni-lab/dexon-ui.git
